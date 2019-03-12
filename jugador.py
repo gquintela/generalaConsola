@@ -5,8 +5,8 @@ class Jugador:
     _puntajeTotal=0
     _numeroDeTirada=0
     _categorias= [
-        ["UNO",3,"tachado"],
-        ["DOS",0,"vacggio"],
+        ["UNO",3,"vacio"],
+        ["DOS",0,"vacio"],
         ["TRES",0,"vacio"],
         ["CUATRO",0,"vacio"],
         ["CINCO",0,"vacio"],
