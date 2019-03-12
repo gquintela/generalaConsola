@@ -1,0 +1,12 @@
+class Categorias:
+    _uno=[0,"vaciog"]
+    _dos=[0,"vacio"]
+    _tres=[0,"vacio"]
+    _cuatro=[0,"vacio"]
+    _cinco=[0,"vacio"]
+    _seis=[0,"vacio"]
+    _escalera=[0,"vacio"]
+    _full=[0,"vacio"]
+    _poker=[0,"vacio"]
+    _generala=[0,"vacio"]
+    _generalaDoble=[0,"vacio"]

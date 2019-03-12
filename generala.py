@@ -1,10 +1,11 @@
 class Generala:
-  __puntajeTotal=0
-  __tirada=1
-  __finJuego=0
+  _puntajeTotal=0
+  _tirada=1
+  _finJuego=0
+
 
 
   def getFinJuego(self):
-    return self.__finJuego
+    return self._finJuego
   def setFinJuego(self):
-    self.__finJuego=1
+    self._finJuego=1
