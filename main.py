@@ -2,7 +2,7 @@ import os
 from cubilete import *
 from generala import *
 from jugador import *
-from tablaPuntaje import *
+
 
 
 def imprimirPuntos(jugador, cat):
