@@ -1,8 +1,7 @@
-import os
+
 from cubilete import *
 from generala import *
 from jugador import *
-
 
 
 def imprimirPuntos(jugador, cat):
@@ -59,36 +58,41 @@ jugador01._nombre = input("ingrese su nombre:")
 imprimirTablaPuntaje(jugador01)
 
 while (partida._vueltaTerminada != 11):
-
-    cubilete.tirarCubilete()
-    print (cubilete.imprimirCubilete() )
-    
     tirada=1
-    opcion=0
-    dadosAnclados=[]
+    plantarse=0
+    dadosAnclados={}
 
-    print("Que desea hacer?\n")
-    print("1) Anclar dados.")
-    print("2) Volver a tirar.")
-    print("3) Plantarse. ")
+    while (tirada<3 or plantarse==1):
+    
+      cubilete.tirarCubilete()
+      print (cubilete.imprimirCubilete() )
+      tirada+=1
+      opcion=0
+      
 
-    opcion = int(input(""))
+      print("Que desea hacer?\n")
+      print("1) Anclar dados.")
+      print("2) Volver a tirar.")
+      print("3) Plantarse. ")
 
-    print ("WACHIN EL VALOR DE OPCION ES: ",opcion )
-    if (opcion==1): #anclar dados
-      seguirAnclando=1
+      opcion=int(input(""))
 
-      while(seguirAnclando!=2):
-        dadosAnclados.append(input("Ingrese numero de dado a anclar: ") )
-        print("Desea anclar mas dados?")
-        print("1) Seguir anclando.")
-        print("2) No anclar mas.")
-        seguirAnclando=input("")
+      if (opcion==1): #anclar dados
+        seguirAnclando=1
 
-    elif (opcion==2):
-      pass # tirar dados
-    else:
-      pass # plantarse
+        while(seguirAnclando!=2):
+          dadosAnclados.add(input("Ingrese numero de dado a anclar: "))
+          print("Desea anclar mas dados?")
+          print("1) Seguir anclando.")
+          print("2) No anclar mas.")
+          seguirAnclando=int(input("")) 
+      
+
+
+      elif (opcion==2):
+        pass # tirar dados
+      else:
+        pass # plantarse
 
 
     partida._vueltaTerminada=partida._vueltaTerminada+1
