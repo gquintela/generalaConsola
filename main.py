@@ -1,3 +1,5 @@
+import os
+from cubilete import *
 from generala import *
 from jugador import *
 from tablaPuntaje import *
@@ -50,19 +52,43 @@ print("Generala para una persona\n\n")
 partida = Generala()
 jugador01 = Jugador()
 
+cubilete = Cubilete()
+
 jugador01._nombre = input("ingrese su nombre:")
 
 imprimirTablaPuntaje(jugador01)
 
-while (partida._vuelta != 11):
+while (partida._vueltaTerminada != 11):
+
+    cubilete.tirarCubilete()
+    print (cubilete.imprimirCubilete() )
+    
+    tirada=1
+    opcion=0
+    dadosAnclados=[]
+
     print("Que desea hacer?\n")
     print("1) Anclar dados.")
     print("2) Volver a tirar.")
     print("3) Plantarse. ")
 
+    opcion=input("")
+
+    print ("WACHIN EL VALOR DE OPCION ES: ",opcion )
+    if (opcion==1): #anclar dados
+      seguirAnclando=1
+
+      while(seguirAnclando!=2):
+        dadosAnclados.append(input("Ingrese numero de dado a anclar: ") )
+        print("Desea anclar mas dados?")
+        print("1) Seguir anclando.")
+        print("2) No anclar mas.")
+        seguirAnclando=input("")
+
+    elif (opcion==2):
+      pass # tirar dados
+    else:
+      pass # plantarse
 
 
-
-
-
-    partida._vuelta=partida._vuelta+1
+    partida._vueltaTerminada=partida._vueltaTerminada+1
