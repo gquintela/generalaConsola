@@ -1,7 +1,7 @@
 class Generala:
   _puntajeTotal=0
   _tirada=1
-  _vuelta=0
+  _vueltaTerminada=0
 
 
 
