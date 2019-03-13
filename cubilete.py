@@ -1,11 +1,11 @@
 from random import randint
 
 class Cubilete:
-  _dado1=0
-  _dado2=0
-  _dado3=0
-  _dado4=0
-  _dado5=0
+  _dado1=[0,"sin anclar"]
+  _dado2=[0,"sin anclar"]
+  _dado3=[0,"sin anclar"]
+  _dado4=[0,"sin anclar"]
+  _dado5=[0,"sin anclar"]
 
   def tirarCubilete(self):
     pass
