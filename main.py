@@ -5,42 +5,28 @@ from jugador import *
 
 
 def imprimirPuntos(jugador, cat):
-    if (jugador._categorias[cat][2] == "vacio"):  # como puedo hacer para que quede mas declarativo?
-        print("     ")
-    elif (jugador._categorias[cat][2] == "tachado"):
-        print("   xXx   ")
+    if (jugador._categorias[cat][1] == "vacio"):  # como puedo hacer para que quede mas declarativo?
+        return ("")
+    elif (jugador._categorias[cat][1] == "tachado"):
+        return("X")
     else:
-        print("    ", end="")
-        print(jugador._categorias[cat][1])
+        return(jugador._categorias[cat][0])
 
 
 def imprimirTablaPuntaje(jugador):
-    print("------ %s ------" % (jugador._nombre) )
-    print("       UNO:    ", end="")
-    imprimirPuntos(jugador, 0)
-    print("       DOS:    ", end="")
-    imprimirPuntos(jugador, 1)
-    print("       TRES:   ", end="")
-    imprimirPuntos(jugador, 2)
-    print("      CUATRO:  ", end="")
-    imprimirPuntos(jugador, 3)
-    print("      CINCO:   ", end="")
-    imprimirPuntos(jugador, 4)
-    print("      SEIS:    ", end="")
-    imprimirPuntos(jugador, 5)
-    print("     ESCALERA: ", end="")
-    imprimirPuntos(jugador, 6)
-    print("      FULL:    ", end="")
-    imprimirPuntos(jugador, 7)
-    print("     POKER:    ", end="")
-    imprimirPuntos(jugador, 8)
-    print("    GENERALA:  ", end="")
-    imprimirPuntos(jugador, 9)
-    print("GENERALA DOBLE:", end="")
-    imprimirPuntos(jugador, 10)
-    print("-----------------")
-    print("PUNTAJE TOTAL: ", end="")
-    print(jugador._puntajeTotal)
+    print( str("%s" % (jugador._nombre)).center(25,'-') )
+    print ( str("UNO: %s    |" % imprimirPuntos(jugador, "UNO") ).rjust(25,' ') )
+    print(str("DOS: %s    |"% imprimirPuntos(jugador, "DOS")).rjust(25, ' '))
+    print(str("TRES: %s    |" % imprimirPuntos(jugador, "TRES")).rjust(25, ' '))
+    print(str("CUATRO: %s    |" % imprimirPuntos(jugador, "CUATRO")).rjust(25, ' '))
+    print(str("CINCO: %s    |" % imprimirPuntos(jugador, "CINCO")).rjust(25, ' '))
+    print(str("SEIS: %s    |" % imprimirPuntos(jugador, "SEIS")).rjust(25, ' '))
+    print(str("ESCALERA: %s    |" % imprimirPuntos(jugador, "ESCALERA")).rjust(25, ' '))
+    print(str("FULL: %s    |" % imprimirPuntos(jugador, "FULL")).rjust(25, ' '))
+    print(str("POKER: %s    |" % imprimirPuntos(jugador, "POKER")).rjust(25, ' '))
+    print(str("GENERALA: %s    |" % imprimirPuntos(jugador, "GENERALA")).rjust(25, ' '))
+    print(str("GENERALA DOBLE: %s    |" % imprimirPuntos(jugador, "GENERALA DOBLE")).rjust(25, ' '))
+
     print("\n\n")
 
 ###############################################################
@@ -60,12 +46,12 @@ imprimirTablaPuntaje(jugador01)
 while (partida._vueltaTerminada != 11):
     tirada=1
     plantarse=0
-    dadosAnclados={}
+    dadosAnclados=set()
 
     while (tirada<3 or plantarse==1):
     
       cubilete.tirarCubilete()
-      print (cubilete.imprimirCubilete() )
+   #   print (cubilete.imprimirCubilete() )
       tirada+=1
       opcion=0
       
@@ -82,9 +68,11 @@ while (partida._vueltaTerminada != 11):
 
         while(seguirAnclando!=2):
           dadosAnclados.add(input("Ingrese numero de dado a anclar: "))
-          print("Desea anclar mas dados?")
+          print("\nDesea anclar mas dados?\n")
+          if (dadosAnclados.__sizeof__()!=0):
+              print ("INDICE DE DADOS ANCLADOS: %s\n" % dadosAnclados)
           print("1) Seguir anclando.")
-          print("2) No anclar mas.")
+          print("2) No anclar mas.\n")
           seguirAnclando=int(input("")) 
       
 
