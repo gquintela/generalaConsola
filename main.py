@@ -72,7 +72,7 @@ while (partida._vueltaTerminada != 11):
     print("2) Volver a tirar.")
     print("3) Plantarse. ")
 
-    opcion=input("")
+    opcion = int(input(""))
 
     print ("WACHIN EL VALOR DE OPCION ES: ",opcion )
     if (opcion==1): #anclar dados
