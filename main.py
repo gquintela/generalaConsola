@@ -1,30 +1,30 @@
-from cubilete import *
-from generala import *
-from jugador import *
+from beaker import *
+from game import *
+from player import *
 
 
-def imprimirPuntos(jugador, cat):
-    if (jugador._categorias[cat][1] == "vacio"):  # como puedo hacer para que quede mas declarativo?
+def printPoints(player, cat):
+    if (player._categories[cat][1] == "empty"):  # como puedo hacer para que quede mas declarativo?
         return ("")
-    elif (jugador._categorias[cat][1] == "tachado"):
+    elif (player._categories[cat][1] == "crossed"):
         return ("X")
     else:
-        return (jugador._categorias[cat][0])
+        return (player._categories[cat][0])
 
 
-def imprimirTablaPuntaje(jugador):
-    print(str("%s" % (jugador._nombre)).center(25, '-'))
-    print(str("UNO: %s    |" % imprimirPuntos(jugador, "UNO")).rjust(25, ' '))
-    print(str("DOS: %s    |" % imprimirPuntos(jugador, "DOS")).rjust(25, ' '))
-    print(str("TRES: %s    |" % imprimirPuntos(jugador, "TRES")).rjust(25, ' '))
-    print(str("CUATRO: %s    |" % imprimirPuntos(jugador, "CUATRO")).rjust(25, ' '))
-    print(str("CINCO: %s    |" % imprimirPuntos(jugador, "CINCO")).rjust(25, ' '))
-    print(str("SEIS: %s    |" % imprimirPuntos(jugador, "SEIS")).rjust(25, ' '))
-    print(str("ESCALERA: %s    |" % imprimirPuntos(jugador, "ESCALERA")).rjust(25, ' '))
-    print(str("FULL: %s    |" % imprimirPuntos(jugador, "FULL")).rjust(25, ' '))
-    print(str("POKER: %s    |" % imprimirPuntos(jugador, "POKER")).rjust(25, ' '))
-    print(str("GENERALA: %s    |" % imprimirPuntos(jugador, "GENERALA")).rjust(25, ' '))
-    print(str("GENERALA DOBLE: %s    |" % imprimirPuntos(jugador, "GENERALA DOBLE")).rjust(25, ' '))
+def printPointsTable(player):
+    print(str("%s" % (player._name)).center(25, '-'))
+    print(str("UNO: %s    |" % printPoints(player, "UNO")).rjust(25, ' '))
+    print(str("DOS: %s    |" % printPoints(player, "DOS")).rjust(25, ' '))
+    print(str("TRES: %s    |" % printPoints(player, "TRES")).rjust(25, ' '))
+    print(str("CUATRO: %s    |" % printPoints(player, "CUATRO")).rjust(25, ' '))
+    print(str("CINCO: %s    |" % printPoints(player, "CINCO")).rjust(25, ' '))
+    print(str("SEIS: %s    |" % printPoints(player, "SEIS")).rjust(25, ' '))
+    print(str("ESCALERA: %s    |" % printPoints(player, "ESCALERA")).rjust(25, ' '))
+    print(str("FULL: %s    |" % printPoints(player, "FULL")).rjust(25, ' '))
+    print(str("POKER: %s    |" % printPoints(player, "POKER")).rjust(25, ' '))
+    print(str("GENERALA: %s    |" % printPoints(player, "GENERALA")).rjust(25, ' '))
+    print(str("GENERALA DOBLE: %s    |" % printPoints(player, "GENERALA DOBLE")).rjust(25, ' '))
 
     print("\n\n")
 
@@ -32,57 +32,57 @@ def imprimirTablaPuntaje(jugador):
 ###############################################################
 ###############################################################
 
-print("Generala para una persona\n\n")
+print("Generala for one person\n\n")
 
-partida = Generala()
-jugador01 = Jugador()
-cubilete = Cubilete()
+game = Game()
+player01 = Player()
+beaker = Beaker()
 
-jugador01._nombre = input("ingrese su nombre:")
+player01._name = input("Write your name:")
 
-imprimirTablaPuntaje(jugador01)
+printPointsTable(player01)
 
-while (partida._vueltaTerminada != 2):
-    tirada = 1
-    plantarse = 0
-    dadosAnclados = set()
+while (game._roundEnded != 2):
+    player01._throwNumber = 1
+    fold = 0
+    lockedDices = set()
 
-    while (tirada < 3 or plantarse == 0):
+    while (player01._throwNumber < 3 or fold == 0):
 
-        cubilete.tirarCubilete()
-        cubilete.imprimirCubilete()
-        tirada += 1
-        opcion = 0
+        beaker.throwBeaker()
+        beaker.printBeaker()
+        player01._throwNumber += 1
+        option = 0
 
-        print("Que desea hacer?\n")
-        print("1) Anclar dados.")
-        print("2) Volver a tirar.")
-        print("3) Plantarse. ")
-        print("4) Mostrar dados. ")
-        print("5) Mostrar tabla de puntuacion. ")
+        print("Choose an option:\n")
+        print("1) Lock dices.")
+        print("2) Roll again.")
+        print("3) Fold. ")
+        print("4) Show the dices. ")
+        print("5) Show score. ")
 
-        opcion = int(input(""))
+        option = int(input(""))
 
-        if (opcion == 1):  # anclar dados
-            seguirAnclando = 1
+        if (option == 1):  # anclar dados
+            keepLocking = 1
 
-            while (seguirAnclando != 2):
-                dadoParaAnclar = (input("Ingrese numero de dado a anclar: "))
-                cubilete.anclarDado(dadoParaAnclar)
-                print("\nDesea anclar mas dados?\n")
-                cubilete.imprimirCubilete()
-                print("1) Seguir anclando.")
-                print("2) No anclar mas.\n")
-                seguirAnclando = int(input(""))
-        elif (opcion == 2):
-            tirada+=1
+            while (keepLocking != 2):
+                diceToLock = (input("Write the dice's index to lock: "))
+                beaker.lockDice(diceToLock)
+                print("\nDo you wish to lock more dices?\n")
+                beaker.printBeaker()
+                print("1) Keep locking.")
+                print("2) No, thanks.\n")
+                keepLocking = int(input(""))
+        elif (option == 2):
+            player01._throwNumber += 1
             break
-        elif (opcion == 3):
-            plantarse=1
+        elif (option == 3):
+            fold=1
             break  # plantarse
-        elif (opcion == 4):
+        elif (option == 4):
             break
-        elif (opcion == 5):  # imprimir tabla de puntos
-            imprimirTablaPuntaje(jugador01)
+        elif (option == 5):  # imprimir tabla de puntos
+            printPointsTable(player01)
 
-    partida._vueltaTerminada = partida._vueltaTerminada + 1
+    game._roundEnded = game._roundEnded + 1
