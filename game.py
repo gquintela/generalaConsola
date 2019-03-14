@@ -1,2 +1,2 @@
 class Game:
-    _roundEnded=0
+        roundEnded=0

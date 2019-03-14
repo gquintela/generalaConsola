@@ -4,16 +4,16 @@ from player import *
 
 
 def printPoints(player, cat):
-    if (player._categories[cat][1] == "empty"):  # como puedo hacer para que quede mas declarativo?
+    if (player.categories[cat][1] == "empty"):  # como puedo hacer para que quede mas declarativo?
         return ("")
-    elif (player._categories[cat][1] == "crossed"):
+    elif (player.categories[cat][1] == "crossed"):
         return ("X")
     else:
-        return (player._categories[cat][0])
+        return (player.categories[cat][0])
 
 
 def printPointsTable(player):
-    print(str("%s" % (player._name)).center(25, '-'))
+    print(str("%s" % (player.name)).center(25, '-'))
     print(str("UNO: %s    |" % printPoints(player, "UNO")).rjust(25, ' '))
     print(str("DOS: %s    |" % printPoints(player, "DOS")).rjust(25, ' '))
     print(str("TRES: %s    |" % printPoints(player, "TRES")).rjust(25, ' '))
@@ -38,20 +38,20 @@ game = Game()
 player01 = Player()
 beaker = Beaker()
 
-player01._name = input("Write your name:")
+player01.name = input("Write your name:")
 
 printPointsTable(player01)
 
-while (game._roundEnded != 2):
-    player01._throwNumber = 1
+while (game.roundEnded != 2):
+    player01.throwNumber = 1
     fold = 0
     lockedDices = set()
 
-    while (player01._throwNumber < 3 or fold == 0):
+    while (player01.throwNumber < 3 or fold == 0):
 
         beaker.throwBeaker()
         beaker.printBeaker()
-        player01._throwNumber += 1
+        player01.throwNumber += 1
         option = 0
 
         print("Choose an option:\n")
@@ -75,7 +75,7 @@ while (game._roundEnded != 2):
                 print("2) No, thanks.\n")
                 keepLocking = int(input(""))
         elif (option == 2):
-            player01._throwNumber += 1
+            player01.throwNumber += 1
             break
         elif (option == 3):
             fold=1
@@ -85,4 +85,4 @@ while (game._roundEnded != 2):
         elif (option == 5):  # imprimir tabla de puntos
             printPointsTable(player01)
 
-    game._roundEnded = game._roundEnded + 1
+    game.roundEnded = game.roundEnded + 1
