@@ -1,6 +1,6 @@
-from beaker import *
-from game import *
-from player import *
+from generala.beaker import *
+from generala.game import *
+from generala.player import *
 
 
 def printPoints(player, cat):
@@ -24,9 +24,8 @@ def printPointsTable(player):
     print(str("FULL: %s    |" % printPoints(player, "FULL")).rjust(25, ' '))
     print(str("POKER: %s    |" % printPoints(player, "POKER")).rjust(25, ' '))
     print(str("GENERALA: %s    |" % printPoints(player, "GENERALA")).rjust(25, ' '))
-    print(str("GENERALA DOBLE: %s    |" % printPoints(player, "GENERALA DOBLE")).rjust(25, ' '))
+    print(str("GENERALA DOBLE: %s    |\n" % printPoints(player, "GENERALA DOBLE")).rjust(26, ' '))
 
-    print("\n\n")
 
 
 ###############################################################
@@ -43,46 +42,56 @@ player01.name = input("Write your name:")
 printPointsTable(player01)
 
 while (game.roundEnded != 2):
-    player01.throwNumber = 1
+    game.throwNumber = 1
     fold = 0
     lockedDices = set()
 
-    while (player01.throwNumber < 3 or fold == 0):
+    beaker.throwBeaker()
 
-        beaker.throwBeaker()
+    while (game.throwNumber < 3 or fold == 0):
+
         beaker.printBeaker()
-        player01.throwNumber += 1
         option = 0
 
         print("Choose an option:\n")
         print("1) Lock dices.")
-        print("2) Roll again.")
-        print("3) Fold. ")
-        print("4) Show the dices. ")
-        print("5) Show score. ")
+        print("2) Unlock dices.")
+        print("3) Roll again.")
+        print("4) Fold. ")
+        print("5) Show the dices. ")
+        print("6) Show score. ")
 
         option = int(input(""))
 
-        if (option == 1):  # anclar dados
-            keepLocking = 1
-
-            while (keepLocking != 2):
-                diceToLock = (input("Write the dice's index to lock: "))
-                beaker.lockDice(diceToLock)
-                print("\nDo you wish to lock more dices?\n")
-                beaker.printBeaker()
-                print("1) Keep locking.")
-                print("2) No, thanks.\n")
-                keepLocking = int(input(""))
-        elif (option == 2):
-            player01.throwNumber += 1
-            break
+        if (option == 1):
+            dicesToLock = set()
+            dicesToLock.add(input(
+                'Write the dice\'s index to lock:\n (separate with \',\' if more than one dice is selected.) '))
+            beaker.lockDices(dicesToLock)
+        if (option == 2):
+            dicesToUnlock = set()
+            dicesToUnlock.add(input(
+                'Write the dice\'s index to unlock:\n (separate with \',\' if more than one dice is selected.) '))
+            beaker.unlockDices(dicesToUnlock)
         elif (option == 3):
-            fold=1
-            break  # plantarse
-        elif (option == 4):
+            beaker.throwBeaker()
+            game.throwNumber += 1
             break
-        elif (option == 5):  # imprimir tabla de puntos
+        elif (option == 4):
+            fold = 1
+            break  # plantarse
+        elif (option == 5):
+            break
+        elif (option == 6):  # imprimir tabla de puntos
             printPointsTable(player01)
 
+    print("\n\n\n")
+    print("-------------------------------------------------------")
+    print("-------------------------------------------------------")
+    print("\n")
+
+    printPointsTable(player01)
+    beaker.printBeaker()
+    print ("What do you want to do?")
+    opcion2=input("blablabla")
     game.roundEnded = game.roundEnded + 1
