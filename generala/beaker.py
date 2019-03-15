@@ -19,19 +19,21 @@ class Beaker:
                 print("Die %s: %s" % (i + 1, self.dice[i][1]))
         print("")
 
-    def diceToSet(diceInString):
+    def diceToSet(self, diceInString):
         res=[]
         for s in diceInString:
             if(s!=','):
                 res.append(s)
         return res
 
-    #TODO: lockDice and unlockDice break when input is more than one integer (i.e. '1,2')
     def lockDice(self, dice):
         diceInSet = self.diceToSet(dice)
         for die in diceInSet:
             self.dice[int(die) - 1][2] = "locked"
+        print(diceInSet)
 
     def unlockDice(self, dice):
-        for die in dice:
+        diceInSet = self.diceToSet(dice)
+        for die in diceInSet:
             self.dice[int(die) - 1][2] = "unlocked"
+        print(diceInSet)
