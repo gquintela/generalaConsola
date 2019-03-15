@@ -15,3 +15,4 @@ class Player:
             "GENERALA": (0, "empty"),
             "GENERALA DOBLE": (0, "empty")
         }
+

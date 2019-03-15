@@ -44,7 +44,7 @@ printPointsTable(player01)
 while (game.roundEnded != 2):
     game.throwNumber = 1
     fold = 0
-    lockedDices = set()
+    lockedDice = set()
 
     beaker.throwBeaker()
 
@@ -54,25 +54,24 @@ while (game.roundEnded != 2):
         option = 0
 
         print("Choose an option:\n")
-        print("1) Lock dices.")
-        print("2) Unlock dices.")
+        print("1) Lock dice.")
+        print("2) Unlock dice.")
         print("3) Roll again.")
         print("4) Fold. ")
-        print("5) Show the dices. ")
+        print("5) Show the dice. ")
         print("6) Show score. ")
 
         option = int(input(""))
 
         if (option == 1):
-            dicesToLock = set()
-            dicesToLock.add(input(
-                'Write the dice\'s index to lock:\n (separate with \',\' if more than one dice is selected.) '))
-            beaker.lockDices(dicesToLock)
+            diceToLock=(input(
+                'Write the die\'s index to lock:\n (separate with \',\' if more than one die is selected.) '))
+            beaker.lockDice(diceToLock)
         if (option == 2):
-            dicesToUnlock = set()
-            dicesToUnlock.add(input(
-                'Write the dice\'s index to unlock:\n (separate with \',\' if more than one dice is selected.) '))
-            beaker.unlockDices(dicesToUnlock)
+
+            diceToUnlock=(input(
+                'Write the die\'s index to unlock:\n (separate with \',\' if more than one die is selected.) '))
+            beaker.unlockDice(diceToUnlock)
         elif (option == 3):
             beaker.throwBeaker()
             game.throwNumber += 1

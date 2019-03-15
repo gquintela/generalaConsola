@@ -3,27 +3,35 @@ from random import randint
 
 class Beaker:
     def __init__(self):
-        self.dices = [["dice1", 0, "unlocked"], ["dice2", 0, "unlocked"], ["dice3", 0, "unlocked"],
-                      ["dice4", 0, "unlocked"], ["dice5", 0, "unlocked"]]
+        self.dice = [["die1", 0, "unlocked"], ["die2", 0, "unlocked"], ["die3", 0, "unlocked"],
+                      ["die4", 0, "unlocked"], ["die5", 0, "unlocked"]]
 
     def throwBeaker(self):
         for i in range(5):
-            if (self.dices[i][2] == "unlocked"):
-                self.dices[i][1] = randint(1, 6)
+            if (self.dice[i][2] == "unlocked"):
+                self.dice[i][1] = randint(1, 6)
 
     def printBeaker(self):
         for i in range(5):
-            if (self.dices[i][2] == "locked"):
-                print("Dice %s: %s (locked)" % (i + 1, self.dices[i][1]))
-            elif (self.dices[i][2] == "unlocked"):
-                print("Dice %s: %s" % (i + 1, self.dices[i][1]))
+            if (self.dice[i][2] == "locked"):
+                print("Die %s: %s (locked)" % (i + 1, self.dice[i][1]))
+            elif (self.dice[i][2] == "unlocked"):
+                print("Die %s: %s" % (i + 1, self.dice[i][1]))
         print("")
 
-    #TODO: lockDices and unlockDices break when input is more than one integer (i.e. '1,2')
-    def lockDices(self, dices):
-        for dice in dices:
-            self.dices[int(dice) - 1][2] = "locked"
+    def diceToSet(diceInString):
+        res=[]
+        for s in diceInString:
+            if(s!=','):
+                res.append(s)
+        return res
 
-    def unlockDices(self, dices):
-        for dice in dices:
-            self.dices[int(dice) - 1][2] = "unlocked"
+    #TODO: lockDice and unlockDice break when input is more than one integer (i.e. '1,2')
+    def lockDice(self, dice):
+        diceInSet = self.diceToSet(dice)
+        for die in diceInSet:
+            self.dice[int(die) - 1][2] = "locked"
+
+    def unlockDice(self, dice):
+        for die in dice:
+            self.dice[int(die) - 1][2] = "unlocked"
