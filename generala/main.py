@@ -1,6 +1,6 @@
-from generala.beaker import *
-from generala.game import *
-from generala.player import *
+from generala.beaker import Beaker
+from generala.game import Game
+from generala.player import Player
 
 ###############################################################
 ###############################################################
@@ -13,17 +13,17 @@ beaker = Beaker()
 
 player01.name = input("Write your name:")
 
-player01.printPointsTable()
+player01.print_points_table()
 
 while (game.round != 2):
-    game.throwNumber = 1
+    game.throw_number = 1
     fold = 0
-    lockedDice = set()
+    locked_dice = set()
 
-    beaker.throwBeaker()
-    beaker.printBeaker()
+    beaker.throw_beaker()
+    beaker.print_Beaker()
 
-    while (game.throwNumber < 3 and fold == 0):
+    while (game.throw_number < 3 and fold == 0):
 
         option = 0
 
@@ -38,30 +38,30 @@ while (game.round != 2):
         option = int(input(""))
 
         if (option == 1):
-            diceToLock=(input(
+            dice_to_lock=(input(
                 'Write the die\'s index to lock:\n (separate with \',\' if more than one die is selected.) '))
-            beaker.lockDice(diceToLock)
+            beaker.lock_dice(dice_to_lock)
         elif (option == 2):
-            diceToUnlock=(input(
+                dice_to_unlock=(input(
                 'Write the die\'s index to unlock:\n (separate with \',\' if more than one die is selected.) '))
-            beaker.unlockDice(diceToUnlock)
+            beaker.unlock_dice(dice_to_unlock)
         elif (option == 3):
-            beaker.throwBeaker()
-            game.throwNumber += 1
+            beaker.throw_beaker()
+            game.throw_number += 1
         elif (option == 4):
             fold = 1
         elif (option == 5):
-            beaker.printBeaker()
+            beaker.print_Beaker()
         elif (option == 6):  # imprimir tabla de puntos
-            player01.printPointsTable(player01)
+            player01.print_points_table(player01)
 
     print("\n\n\n")
     print("-------------------------------------------------------")
     print("-------------------------------------------------------")
     print("\n")
 
-    player01.printPointsTable(player01)
-    beaker.printBeaker()
+    player01.print_points_table(player01)
+    beaker.print_Beaker()
     print ("What do you want to do?")
     opcion2=input("blablabla")
     game.round = game.round + 1
