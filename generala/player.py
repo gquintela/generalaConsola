@@ -2,7 +2,7 @@ class Player:
     def __init__(self):
         self.name = ""
         self.totalPoints = 0
-        self.categories = {
+        self.categories = {  #empty/crossed/filled
             "UNO": (0, "empty"),
             "DOS": (0, "empty"),
             "TRES": (0, "empty"),
@@ -38,3 +38,8 @@ class Player:
         print(str("POKER: %s    |" % self.printPoints("POKER")).rjust(25, ' '))
         print(str("GENERALA: %s    |" % self.printPoints("GENERALA")).rjust(25, ' '))
         print(str("GENERALA DOBLE: %s    |\n" % self.printPoints("GENERALA DOBLE")).rjust(26, ' '))
+
+    def writeResult(self):
+        for category in self.categories:
+            if self.categories["UNO"][1]=="empty":
+                pass

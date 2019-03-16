@@ -3,7 +3,7 @@ class Game:
         self.round = 0
         self.throwNumber = 0
 
-    def NumberCount(self, beaker, number):
+    def computeNumberCount(self, beaker, number):
         count = 0
         for die in beaker:
             if beaker.dice[die][1] == number:
