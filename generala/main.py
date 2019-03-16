@@ -42,7 +42,7 @@ while (game.round != 2):
                 'Write the die\'s index to lock:\n (separate with \',\' if more than one die is selected.) '))
             beaker.lock_dice(dice_to_lock)
         elif (option == 2):
-                dice_to_unlock=(input(
+            dice_to_unlock=(input(
                 'Write the die\'s index to unlock:\n (separate with \',\' if more than one die is selected.) '))
             beaker.unlock_dice(dice_to_unlock)
         elif (option == 3):

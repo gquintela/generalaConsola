@@ -4,26 +4,26 @@ class Player:
         self.name = ""
         self.total_points = 0
         self.categories = {
-            "UNO": (0, "empty"),
-            "DOS": (0, "empty"),
-            "TRES": (0, "empty"),
-            "CUATRO": (0, "empty"),
-            "CINCO": (0, "empty"),
-            "SEIS": (0, "empty"),
-            "ESCALERA": (0, "empty"),
-            "FULL": (0, "empty"),
-            "POKER": (0, "empty"),
-            "GENERALA": (0, "empty"),
-            "GENERALA DOBLE": (0, "empty")
+            "UNO": (None),
+            "DOS": (None),
+            "TRES": (None),
+            "CUATRO": (None),
+            "CINCO": (None),
+            "SEIS": (None),
+            "ESCALERA": (None),
+            "FULL": (None),
+            "POKER": (None),
+            "GENERALA": (None),
+            "GENERALA DOBLE": (None)
         }
 
     def print_points(self, cat):
-        if (self.categories[cat][1] == "empty"):  # como puedo hacer para que quede mas declarativo?
+        if (self.categories[cat] == None):  # como puedo hacer para que quede mas declarativo?
             return ("")
-        elif (self.categories[cat][1] == "crossed"):
+        elif (self.categories[cat] == 0):
             return ("X")
         else:
-            return (self.categories[cat][0])
+            return (self.categories[cat])
 
 
     def print_points_table(self):
