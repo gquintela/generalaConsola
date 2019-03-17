@@ -1,47 +1,70 @@
+from generala.prompts import Prompts
+
 class Game:
 
     def __init__(self):
         self.round = 0
         self.throw_number = 0
+        self.prompts = Prompts()
 
     def number_count(self, beaker, number):
         count = 0
-        for die in beaker:
+        for die in range(5):
             if beaker.dice[die][1] == number:
                 count += beaker.dice[die][1]
         return count
 
     def compute_stairway(self, beaker):
+        if(self.throw_number is 1):
+            first_throw = 5
+        else :
+            first_throw = 0
+
         test_beaker_01 = [["die1", 1, "unlocked"], ["die2", 2, "unlocked"], ["die3", 3, "unlocked"],
                           ["die4", 4, "unlocked"], ["die5", 5, "unlocked"]]
         test_beaker_02 = [["die1", 2, "unlocked"], ["die2", 3, "unlocked"], ["die3", 4, "unlocked"],
                           ["die4", 5, "unlocked"], ["die5", 6, "unlocked"]]
         test_beaker_03 = [["die1", 3, "unlocked"], ["die2", 4, "unlocked"], ["die3", 5, "unlocked"],
                           ["die4", 6, "unlocked"], ["die5", 1, "unlocked"]]
-        sorted_beaker = beaker.dice.sort(beaker.dice[1])
+        sorted_beaker = beaker.dice.sort(key = beaker.dice[1])
         for die in sorted_beaker.dice:
             die[2] = "unlocked"
         if test_beaker_01 == sorted_beaker:
-            return True
+            return 20 + first_throw
         elif test_beaker_02 == sorted_beaker:
-            return True
+            return 20 + first_throw
         elif test_beaker_03 == sorted_beaker:
-            return True
+            return 20 + first_throw
         else:
-            return False
+            return 0
 
     def compute_fullhouse(self, beaker):
-        sorted_beaker = beaker.sort(beaker.dice[1])
-        return sorted_beaker.dice[0][1] == sorted_beaker.dice[1][1] and sorted_beaker.dice[1][1] == \
-               sorted_beaker.dice[2][1] and sorted_beaker.dice[3][1] == \
-               sorted_beaker.dice[4][1] and sorted_beaker.dice[0][1] != sorted_beaker.dice[4][1] or \
-               sorted_beaker.dice[0][1] == sorted_beaker.dice[1][1] and \
-               sorted_beaker.dice[2][1] == sorted_beaker.dice[3][1] and sorted_beaker.dice[3][1] == \
-               sorted_beaker.dice[4][1] and sorted_beaker.dice[0][1] != \
-               sorted_beaker.dice[4][1]
+        if (self.throw_number is 1):
+            first_throw = 5
+        else:
+            first_throw = 0
+        sorted_beaker = []
+        for i in range(5):
+            sorted_beaker.append(beaker.dice[i][1])
+
+        sorted_beaker.sort()
+        predicate =  sorted_beaker[0] == sorted_beaker[1] and sorted_beaker[1] == \
+               sorted_beaker[2] and sorted_beaker[3] == \
+               sorted_beaker[4] and sorted_beaker[0] != sorted_beaker[4] or \
+               sorted_beaker[0] == sorted_beaker[1] and \
+               sorted_beaker[2] == sorted_beaker[3] and sorted_beaker[3] == \
+               sorted_beaker[4] and sorted_beaker[0] != \
+               sorted_beaker[4]
+        if (predicate):
+            return 30 + first_throw
+        else:
+            return 0
 
     def compute_poker(self, beaker):
-        res = False
+        if (self.throw_number is 1):
+            first_throw = 5
+        else:
+            first_throw = 0
         dice = [1, 2, 3, 4, 5, 6]
         for i in dice:
             count = 0
@@ -49,11 +72,46 @@ class Game:
                 if (dice[i] == beaker.dice[die][1]):
                     count += 1
                     if (count == 4):
-                        return True
-        return False
+                        return 40 + first_throw
+        return 0
 
     def compute_five_equal(self, beaker):
+        if (self.throw_number is 1):
+            first_throw = 50
+        else:
+            first_throw = 0
+
         beaker_to_set = set()
         for die in beaker.dice:
-            beaker_to_set.add(die)
-        return beaker_to_set.__sizeof__() == 1
+            beaker_to_set.add(die[1])
+        if(beaker_to_set.__sizeof__() == 1):
+            return 50 +first_throw
+        else:
+            return 0
+
+    def compmute_posibilities(self,player,beaker):
+        posible_results = []
+        #one
+        if(player.categories["one"] is None):
+            posible_results.append(("one",self.number_count(beaker,1)))
+        if(player.categories["two"] is None):
+            posible_results.append(("two", self.number_count(beaker, 2)))
+        if(player.categories["three"] is None):
+            posible_results.append(("three", self.number_count(beaker, 3)))
+        if(player.categories["four"] is None):
+            posible_results.append(("four", self.number_count(beaker, 4)))
+        if(player.categories["five"] is None):
+            posible_results.append(("five", self.number_count(beaker, 5)))
+        if(player.categories["six"] is None):
+            posible_results.append(("six", self.number_count(beaker, 6)))
+#        if(player.categories["stairway"] is None): TODO: it doesn't work
+#            posible_results.append(("stairway",self.compute_stairway(beaker)))
+        if(player.categories["fullhouse"] is None):
+            posible_results.append(("fullhouse", self.compute_fullhouse(beaker)))
+        if(player.categories["generala"] is None):
+            posible_results.append(("generala", self.compute_five_equal(beaker)))
+        if(player.categories["double_generala"] != None and int(player.categories["generala"]) > 0  ):
+            posible_results.append(("double_generala", self.compute_stairway(beaker))+500)
+        elif(player.categories["double_generala"] == None):
+            posible_results.append(("double_generala", 0))
+        return posible_results

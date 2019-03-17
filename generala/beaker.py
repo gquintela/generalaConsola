@@ -5,7 +5,7 @@ class Beaker:
 
     def __init__(self):
         self.dice = [["die1", 0, "unlocked"], ["die2", 0, "unlocked"], ["die3", 0, "unlocked"],
-                      ["die4", 0, "unlocked"], ["die5", 0, "unlocked"]]
+                    ["die4", 0, "unlocked"], ["die5", 0, "unlocked"]]
 
     def throw_beaker(self):
         for i in range(5):
@@ -21,9 +21,9 @@ class Beaker:
         print("")
 
     def dice_to_set(self, dice_in_string):
-        res=[]
+        res = []
         for s in dice_in_string:
-            if(s!=','):
+            if(s != ','):
                 res.append(s)
         return res
 

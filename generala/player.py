@@ -1,41 +1,52 @@
-class Player:
+from generala.prompts import Prompts
+from generala.game import Game
+
+class Player():
 
     def __init__(self):
         self.name = ""
-        self.total_points = 0
         self.categories = {
-            "UNO": (None),
-            "DOS": (None),
-            "TRES": (None),
-            "CUATRO": (None),
-            "CINCO": (None),
-            "SEIS": (None),
-            "ESCALERA": (None),
-            "FULL": (None),
-            "POKER": (None),
-            "GENERALA": (None),
-            "GENERALA DOBLE": (None)
+            "one": (None),
+            "two": (None),
+            "three": (None),
+            "four": (None),
+            "five": (None),
+            "six": (None),
+            "stairway": (None),
+            "fullhouse": (None),
+            "poker": (None),
+            "generala": (None),
+            "double_generala": (None)
         }
 
+    @property
+    def score(self):
+        return sum(points for points in self.categories.values()
+                   if points is not None)
+
     def print_points(self, cat):
-        if (self.categories[cat] == None):  # como puedo hacer para que quede mas declarativo?
+        if (self.categories[cat] is None):
             return ("")
         elif (self.categories[cat] == 0):
             return ("X")
         else:
             return (self.categories[cat])
 
-
     def print_points_table(self):
         print(str("%s" % (self.name)).center(25, '-'))
-        print(str("UNO: %s    |" % self.print_points("UNO")).rjust(25, ' '))
-        print(str("DOS: %s    |" % self.print_points("DOS")).rjust(25, ' '))
-        print(str("TRES: %s    |" % self.print_points("TRES")).rjust(25, ' '))
-        print(str("CUATRO: %s    |" % self.print_points("CUATRO")).rjust(25, ' '))
-        print(str("CINCO: %s    |" % self.print_points("CINCO")).rjust(25, ' '))
-        print(str("SEIS: %s    |" % self.print_points("SEIS")).rjust(25, ' '))
-        print(str("ESCALERA: %s    |" % self.print_points("ESCALERA")).rjust(25, ' '))
-        print(str("FULL: %s    |" % self.print_points("FULL")).rjust(25, ' '))
-        print(str("POKER: %s    |" % self.print_points("POKER")).rjust(25, ' '))
-        print(str("GENERALA: %s    |" % self.print_points("GENERALA")).rjust(25, ' '))
-        print(str("GENERALA DOBLE: %s    |\n" % self.print_points("GENERALA DOBLE")).rjust(26, ' '))
+       #print(str(game.prompts.dic["one"] + ": %s    |" % self.print_points(game.prompts.dic["one"])).rjust(25, ' ')) # TODO: How can i call the dictionary from prompts.dic from here?
+
+        print(str("one: %s    |" % self.print_points("one")).rjust(25, ' '))
+        print(str("two: %s    |" % self.print_points("two")).rjust(25, ' '))
+        print(str("three: %s    |" % self.print_points("three")).rjust(25, ' '))
+        print(str("four: %s    |" % self.print_points("four")).rjust(25, ' '))
+        print(str("five: %s    |" % self.print_points("five")).rjust(25, ' '))
+        print(str("six: %s    |" % self.print_points("six")).rjust(25, ' '))
+        print(str("stairway: %s    |" % self.print_points("stairway")).rjust(25, ' '))
+        print(str("fullhouse: %s    |" % self.print_points("fullhouse")).rjust(25, ' '))
+        print(str("poker: %s    |" % self.print_points("poker")).rjust(25, ' '))
+        print(str("generala: %s    |" % self.print_points("generala")).rjust(25, ' '))
+        print(str("double_generala: %s   |" % self.print_points("double_generala")).rjust(25, ' '))
+        print(str("|").rjust(25, '-'))
+        print(str("PUNTAJE: %s    |" % self.score).rjust(25, ' '))
+        print(str("|").rjust(25, '-'))
