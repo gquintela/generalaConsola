@@ -20,15 +20,14 @@ class Game:
         else :
             first_throw = 0
 
-        test_beaker_01 = [["die1", 1, "unlocked"], ["die2", 2, "unlocked"], ["die3", 3, "unlocked"],
-                          ["die4", 4, "unlocked"], ["die5", 5, "unlocked"]]
-        test_beaker_02 = [["die1", 2, "unlocked"], ["die2", 3, "unlocked"], ["die3", 4, "unlocked"],
-                          ["die4", 5, "unlocked"], ["die5", 6, "unlocked"]]
-        test_beaker_03 = [["die1", 3, "unlocked"], ["die2", 4, "unlocked"], ["die3", 5, "unlocked"],
-                          ["die4", 6, "unlocked"], ["die5", 1, "unlocked"]]
-        sorted_beaker = beaker.dice.sort(key = beaker.dice[1])
-        for die in sorted_beaker.dice:
-            die[2] = "unlocked"
+        test_beaker_01 = [1,2,3,4,5]
+        test_beaker_02 = [2,3,4,5,6]
+        test_beaker_03 = [3,4,5,6,1]
+
+        sorted_beaker = []
+        for i in range(5):
+            sorted_beaker.append(beaker.dice[i][1])
+
         if test_beaker_01 == sorted_beaker:
             return 20 + first_throw
         elif test_beaker_02 == sorted_beaker:
@@ -46,7 +45,6 @@ class Game:
         sorted_beaker = []
         for i in range(5):
             sorted_beaker.append(beaker.dice[i][1])
-
         sorted_beaker.sort()
         predicate =  sorted_beaker[0] == sorted_beaker[1] and sorted_beaker[1] == \
                sorted_beaker[2] and sorted_beaker[3] == \
@@ -104,8 +102,8 @@ class Game:
             posible_results.append(("five", self.number_count(beaker, 5)))
         if(player.categories["six"] is None):
             posible_results.append(("six", self.number_count(beaker, 6)))
-#        if(player.categories["stairway"] is None): TODO: it doesn't work
-#            posible_results.append(("stairway",self.compute_stairway(beaker)))
+        if(player.categories["stairway"] is None): #TODO: test!it doesnt work!!!
+            posible_results.append(("stairway",self.compute_stairway(beaker)))
         if(player.categories["fullhouse"] is None):
             posible_results.append(("fullhouse", self.compute_fullhouse(beaker)))
         if(player.categories["generala"] is None):

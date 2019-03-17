@@ -42,12 +42,15 @@ while (game.round != 2):
         if (option == 1):
             dice_to_lock = (input(game.prompts.dic["lock_prompt"]))
             beaker.lock_dice(dice_to_lock)
+            beaker.print_Beaker()
         elif (option == 2):
             dice_to_unlock = (input(game.prompts.dic["unlock_prompt"]))
             beaker.unlock_dice(dice_to_unlock)
+            beaker.print_Beaker()
         elif (option == 3):
             beaker.throw_beaker()
             game.throw_number += 1
+            beaker.print_Beaker()
         elif (option == 4):
             fold = 1
         elif (option == 5):
