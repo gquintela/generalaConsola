@@ -76,8 +76,8 @@ while (game.round != 11):
 
         game.players[player_index].print_points_table()
         game.beaker.print_Beaker()
-        posibilities = game.rules.compmute_posibilities(game.players[player_index], game.beaker)
-        print(game.rules.prompts.dic["choose_points"]+"\n")
+        posibilities = game.rules.compmute_posibilities(game, game.players[player_index], game.beaker)
+        print(game.prompts.dic["choose_points"]+"\n")
         game.rules.print_posibilities(posibilities)
         opcion2 = input("blablabla")
         game.rules.round = game.rules.round + 1

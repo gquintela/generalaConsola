@@ -9,8 +9,8 @@ class Rules:
                 count += beaker.dice[die].value
         return count
 
-    def compute_stairway(self, beaker):
-        if(self.throw_number is 1):
+    def compute_stairway(self,game, beaker):
+        if(game.throw_number is 1):
             first_throw = 5
         else :
             first_throw = 0
@@ -32,8 +32,8 @@ class Rules:
         else:
             return 0
 
-    def compute_fullhouse(self, beaker):
-        if (self.throw_number is 1):
+    def compute_fullhouse(self,game, beaker):
+        if (game.throw_number is 1):
             first_throw = 5
         else:
             first_throw = 0
@@ -53,8 +53,8 @@ class Rules:
         else:
             return 0
 
-    def compute_poker(self, beaker):
-        if (self.throw_number is 1):
+    def compute_poker(self,game, beaker):
+        if (game.throw_number is 1):
             first_throw = 5
         else:
             first_throw = 0
@@ -68,8 +68,8 @@ class Rules:
                         return 40 + first_throw
         return 0
 
-    def compute_five_equal(self, beaker):
-        if (self.throw_number is 1):
+    def compute_five_equal(self, game, beaker):
+        if (game.throw_number is 1):
             first_throw = 50
         else:
             first_throw = 0
@@ -82,7 +82,7 @@ class Rules:
         else:
             return 0
 
-    def compmute_posibilities(self,player,beaker):
+    def compmute_posibilities(self,game,player,beaker):
         posible_results = []
         #one
         if(player.categories["one"] is None):
@@ -98,15 +98,15 @@ class Rules:
         if(player.categories["six"] is None):
             posible_results.append(("six", self.number_count(beaker, 6)))
         if(player.categories["stairway"] is None): #TODO: test!it doesnt work!!!
-            posible_results.append(("stairway",self.compute_stairway(beaker)))
+            posible_results.append(("stairway",self.compute_stairway(game, beaker)))
         if(player.categories["fullhouse"] is None):
-            posible_results.append(("fullhouse", self.compute_fullhouse(beaker)))
+            posible_results.append(("fullhouse", self.compute_fullhouse(game, beaker)))
         if(player.categories["poker"] is None):
-            posible_results.append(("poker", self.compute_fullhouse(beaker)))
+            posible_results.append(("poker", self.compute_fullhouse(game, beaker)))
         if(player.categories["generala"] is None):
-            posible_results.append(("generala", self.compute_five_equal(beaker)))
+            posible_results.append(("generala", self.compute_five_equal(game, beaker)))
         if(player.categories["double_generala"] != None and int(player.categories["generala"]) > 0  ):
-            posible_results.append(("double_generala", self.compute_stairway(beaker))+500)
+            posible_results.append(("double_generala", self.compute_stairway(game, beaker))+500)
         elif(player.categories["double_generala"] == None):
             posible_results.append(("double_generala", 0))
         return posible_results
