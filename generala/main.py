@@ -24,7 +24,6 @@ while (game.round != 11):
     for player_index in range(game.players.__sizeof__()):
         game.players[player_index].print_points_table()
         game.throw_number = 1
-        print("round: ", game.throw_number)
         print("")
         fold = 0
         locked_dice = set()
@@ -35,6 +34,7 @@ while (game.round != 11):
         while (game.throw_number < 3 and fold == 0):
 
             option = 0
+            print("round: ", game.throw_number)
 
             print(game.prompts.dic["choose_option"] + "\n")
             print("1) " + game.prompts.dic["lock_dice"])
@@ -77,8 +77,7 @@ while (game.round != 11):
         game.players[player_index].print_points_table()
         game.beaker.print_Beaker()
         posibilities = game.rules.compmute_posibilities(game.players[player_index], game.beaker)
-        print (posibilities)
-        print(game.rules.prompts.dic["choose_points"])
+        print(game.rules.prompts.dic["choose_points"]+"\n")
         game.rules.print_posibilities(posibilities)
         opcion2 = input("blablabla")
         game.rules.round = game.rules.round + 1

@@ -23,7 +23,7 @@ class Beaker:
     def dice_to_set(self, dice_in_string):
         res = []
         for s in dice_in_string:
-            if(s != ','):
+            if (s != ','):
                 res.append(s)
         return res
 
@@ -39,4 +39,3 @@ class Beaker:
 
     def sort(self):
         self.dice.sort(key=lambda die: die.value)
-

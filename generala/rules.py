@@ -2,11 +2,6 @@ from generala.prompts import Prompts
 
 class Rules:
 
-    def __init__(self):
-        self.round = 0
-        self.throw_number = 0
-        self.prompts = Prompts()
-
     def number_count(self, beaker, number):
         count = 0
         for die in range(5):
@@ -117,5 +112,5 @@ class Rules:
         return posible_results
 
     def print_posibilities(self,posible_results):
-        for i in range(posible_results.__sizeof__()):
+        for i in range(len(posible_results)):
             print("%i) %s: %i points" %  (int(i+1), posible_results[i][0], int(posible_results[i][1])))
