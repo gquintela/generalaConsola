@@ -46,7 +46,7 @@ class Player():
         print(str("fullhouse: %s    |" % self.print_points("fullhouse")).rjust(25, ' '))
         print(str("poker: %s    |" % self.print_points("poker")).rjust(25, ' '))
         print(str("generala: %s    |" % self.print_points("generala")).rjust(25, ' '))
-        print(str("double_generala: %s   |" % self.print_points("double_generala")).rjust(25, ' '))
+        print(str("double_generala: %s  |" % self.print_points("double_generala")).rjust(25, ' '))
         print(str("|").rjust(25, '-'))
         print(str("PUNTAJE: %s    |" % self.score).rjust(25, ' '))
         print(str("|").rjust(25, '-'))

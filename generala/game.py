@@ -10,8 +10,8 @@ class Game:
     def number_count(self, beaker, number):
         count = 0
         for die in range(5):
-            if beaker.dice[die][1] == number:
-                count += beaker.dice[die][1]
+            if beaker.dice[die].value == number:
+                count += beaker.dice[die].value
         return count
 
     def compute_stairway(self, beaker):
@@ -26,7 +26,7 @@ class Game:
 
         sorted_beaker = []
         for i in range(5):
-            sorted_beaker.append(beaker.dice[i][1])
+            sorted_beaker.append(beaker.dice[i].value)
 
         if test_beaker_01 == sorted_beaker:
             return 20 + first_throw
@@ -44,7 +44,7 @@ class Game:
             first_throw = 0
         sorted_beaker = []
         for i in range(5):
-            sorted_beaker.append(beaker.dice[i][1])
+            sorted_beaker.append(beaker.dice[i].value)
         sorted_beaker.sort()
         predicate =  sorted_beaker[0] == sorted_beaker[1] and sorted_beaker[1] == \
                sorted_beaker[2] and sorted_beaker[3] == \
@@ -81,7 +81,7 @@ class Game:
 
         beaker_to_set = set()
         for die in beaker.dice:
-            beaker_to_set.add(die[1])
+            beaker_to_set.add(die.value)
         if(beaker_to_set.__sizeof__() == 1):
             return 50 +first_throw
         else:

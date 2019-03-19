@@ -19,6 +19,8 @@ player01.print_points_table()
 
 while (game.round != 2):
     game.throw_number = 1
+    print("round: ",game.throw_number)
+    print("")
     fold = 0
     locked_dice = set()
 
@@ -36,6 +38,7 @@ while (game.round != 2):
         print("4) " + game.prompts.dic["fold"])
         print("5) " + game.prompts.dic["show_dice"])
         print("6) " + game.prompts.dic["show_score"])
+        print("7) " + game.prompts.dic["sort_dice"])
 
         option = int(input(""))
 
@@ -57,6 +60,9 @@ while (game.round != 2):
             beaker.print_Beaker()
         elif (option == 6):  # imprimir tabla de puntos
             player01.print_points_table(player01)
+        elif (option == 7):
+            beaker.sort()
+            beaker.print_Beaker()
 
     print("\n\n\n")
     print("-------------------------------------------------------")
