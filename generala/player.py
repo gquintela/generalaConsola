@@ -1,5 +1,5 @@
 from generala.prompts import Prompts
-from generala.game import Game
+from generala.rules import Rules
 
 class Player():
 

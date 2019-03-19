@@ -1,78 +1,84 @@
 from generala.beaker import Beaker
-from generala.game import Game
+from generala.rules import Rules
 from generala.player import Player
-
+from generala.game import Game
 
 ###############################################################
 ###############################################################
 
 game = Game()
 
-print(game.prompts.dic["welcome"]+"\n")
+print(game.prompts.dic["welcome"] + "\n")
 
-player01 = Player()
-beaker = Beaker()
+print(game.prompts.dic["players_number"] + "\n")
 
-player01.name = input(game.prompts.dic["new_name"])
+player_number = input()
 
-player01.print_points_table()
+for i in range(int(player_number)):
+    print(game.prompts.dic["new_name"],i+1)
+    new_player = input()
+    game.add_player(new_player)
 
-while (game.round != 2):
-    game.throw_number = 1
-    print("round: ",game.throw_number)
-    print("")
-    fold = 0
-    locked_dice = set()
 
-    beaker.throw_beaker()
-    beaker.print_Beaker()
+while (game.round != 11):
+    for player_index in range(game.players.__sizeof__()):
+        game.players[player_index].print_points_table()
+        game.throw_number = 1
+        print("round: ", game.throw_number)
+        print("")
+        fold = 0
+        locked_dice = set()
 
-    while (game.throw_number < 3 and fold == 0):
+        game.beaker.throw_beaker()
+        game.beaker.print_Beaker()
 
-        option = 0
+        while (game.throw_number < 3 and fold == 0):
 
-        print(game.prompts.dic["choose_option"]+"\n")
-        print("1) " + game.prompts.dic["lock_dice"])
-        print("2) " + game.prompts.dic["unlock_dice"])
-        print("3) " + game.prompts.dic["roll_again"])
-        print("4) " + game.prompts.dic["fold"])
-        print("5) " + game.prompts.dic["show_dice"])
-        print("6) " + game.prompts.dic["show_score"])
-        print("7) " + game.prompts.dic["sort_dice"])
+            option = 0
 
-        option = int(input(""))
+            print(game.prompts.dic["choose_option"] + "\n")
+            print("1) " + game.prompts.dic["lock_dice"])
+            print("2) " + game.prompts.dic["unlock_dice"])
+            print("3) " + game.prompts.dic["roll_again"])
+            print("4) " + game.prompts.dic["fold"])
+            print("5) " + game.prompts.dic["show_dice"])
+            print("6) " + game.prompts.dic["show_score"])
+            print("7) " + game.prompts.dic["sort_dice"])
 
-        if (option == 1):
-            dice_to_lock = (input(game.prompts.dic["lock_prompt"]))
-            beaker.lock_dice(dice_to_lock)
-            beaker.print_Beaker()
-        elif (option == 2):
-            dice_to_unlock = (input(game.prompts.dic["unlock_prompt"]))
-            beaker.unlock_dice(dice_to_unlock)
-            beaker.print_Beaker()
-        elif (option == 3):
-            beaker.throw_beaker()
-            game.throw_number += 1
-            beaker.print_Beaker()
-        elif (option == 4):
-            fold = 1
-        elif (option == 5):
-            beaker.print_Beaker()
-        elif (option == 6):  # imprimir tabla de puntos
-            player01.print_points_table(player01)
-        elif (option == 7):
-            beaker.sort()
-            beaker.print_Beaker()
+            option = int(input(""))
 
-    print("\n\n\n")
-    print("-------------------------------------------------------")
-    print("-------------------------------------------------------")
-    print("\n")
+            if (option == 1):
+                dice_to_lock = (input(game.prompts.dic["lock_prompt"]))
+                game.beaker.lock_dice(dice_to_lock)
+                game.beaker.print_Beaker()
+            elif (option == 2):
+                dice_to_unlock = (input(game.prompts.dic["unlock_prompt"]))
+                game.beaker.unlock_dice(dice_to_unlock)
+                game.beaker.print_Beaker()
+            elif (option == 3):
+                game.beaker.throw_beaker()
+                game.throw_number += 1
+                game.beaker.print_Beaker()
+            elif (option == 4):
+                fold = 1
+            elif (option == 5):
+                game.beaker.print_Beaker()
+            elif (option == 6):  # imprimir tabla de puntos
+                player01.print_points_table(player01)
+            elif (option == 7):
+                beaker.sort()
+                beaker.print_Beaker()
 
-    player01.print_points_table()
-    beaker.print_Beaker()
-    posibilities = game.compmute_posibilities(player01,beaker)
-    print (posibilities)
-    print(game.prompts.dic["choose_points"])
-    opcion2 = input("blablabla")
-    game.round = game.round + 1
+        print("\n\n\n")
+        print("-------------------------------------------------------")
+        print("-------------------------------------------------------")
+        print("\n")
+
+        game.players[player_index].print_points_table()
+        game.beaker.print_Beaker()
+        posibilities = game.rules.compmute_posibilities(game.players[player_index], game.beaker)
+        print (posibilities)
+        print(game.rules.prompts.dic["choose_points"])
+        game.rules.print_posibilities(posibilities)
+        opcion2 = input("blablabla")
+        game.rules.round = game.rules.round + 1

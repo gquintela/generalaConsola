@@ -3,8 +3,9 @@ class Prompts:
     def __init__(self):
 
         self.dic={
-        'welcome' : "Welcome to the Generala Game!",
-        "new_name" : "Write your name: ",
+        "welcome" : "Welcome to the Generala Game!",
+        "players_number" : "how many players will play?",
+        "new_name" : "Player ",
         "choose_option" : "Choose an option: ",
         "lock_dice" : "Lock dice.",
         "unlock_dice" : "Unlock dice.",
