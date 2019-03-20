@@ -6,9 +6,9 @@ from generala.prompts import Prompts
 class Game:
 
     def __init__(self):
-        self.rules=Rules()
-        self.round= 0
-        self.throw_number = 0
+        self.rules = Rules()
+        self.round= 1
+        self.throw_number = 1
         self.players = []
         self.beaker = Beaker()
         self.prompts = Prompts()

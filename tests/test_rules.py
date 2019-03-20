@@ -8,15 +8,23 @@ class TestRules(TestCase):
 
     def test_number_count(self):
         rules = Rules()
-        beaker = Beaker()
-        for die in beaker.dice:
+        game = Game()
+        for die in game.beaker.dice:
             die.value = 1
-        self.assertEqual(rules.number_count(beaker, 1), 5)
+        self.assertEqual(rules.number_count(game, 1), 5)
         for die in range(5):
-            beaker.dice[die].value = die + 1
-        self.assertEqual(rules.number_count(beaker, die + 1), die + 1)
+            game.beaker.dice[die].value = die + 1
+        self.assertEqual(rules.number_count(game, die + 1), die + 1)
 
     def test_stairway(self):
         game = Game()
         game.beaker.custom_beaker(1, 2, 3, 4, 5)
-        self.assertEqual(game.rules.compute_stairway(game, game.beaker), 25)
+        self.assertEqual(game.rules.compute_stairway(game), 25)
+
+    def test_poker(self):
+        game = Game()
+        game.beaker.custom_beaker(5,5,6,6,6)
+        self.assertEqual(game.rules.compute_poker(game),0)
+
+if __name__ == '__main__':
+    main()
