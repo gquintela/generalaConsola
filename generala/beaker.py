@@ -39,3 +39,10 @@ class Beaker:
 
     def sort(self):
         self.dice.sort(key=lambda die: die.value)
+
+    def custom_beaker(self,int0,int1,int2,int3,int4):
+        self.dice[0].value = int0
+        self.dice[1].value = int1
+        self.dice[2].value = int2
+        self.dice[3].value = int3
+        self.dice[4].value = int4

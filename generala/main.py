@@ -64,10 +64,10 @@ while (game.round != 11):
             elif (option == 5):
                 game.beaker.print_Beaker()
             elif (option == 6):  # imprimir tabla de puntos
-                player01.print_points_table(player01)
+                game.players[player_index].print_points_table()
             elif (option == 7):
-                beaker.sort()
-                beaker.print_Beaker()
+                game.beaker.sort()
+                game.beaker.print_Beaker()
 
         print("\n\n\n")
         print("-------------------------------------------------------")
