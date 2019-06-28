@@ -90,33 +90,33 @@ class Rules:
             return 0
 
     def compmute_posibilities(self, game, player):
-        posible_results = []
+        possible_results = []
         # one
-        if (player.categories["one"] is None):
-            posible_results.append(("one", self.number_count(game, 1)))
-        if (player.categories["two"] is None):
-            posible_results.append(("two", self.number_count(game, 2)))
-        if (player.categories["three"] is None):
-            posible_results.append(("three", self.number_count(game, 3)))
-        if (player.categories["four"] is None):
-            posible_results.append(("four", self.number_count(game, 4)))
-        if (player.categories["five"] is None):
-            posible_results.append(("five", self.number_count(game, 5)))
-        if (player.categories["six"] is None):
-            posible_results.append(("six", self.number_count(game, 6)))
-        if (player.categories["stairway"] is None):  # TODO: test!it doesnt work!!!
-            posible_results.append(("stairway", self.compute_stairway(game)))
-        if (player.categories["fullhouse"] is None):
-            posible_results.append(("fullhouse", self.compute_fullhouse(game)))
-        if (player.categories["poker"] is None):
-            posible_results.append(("poker", self.compute_poker(game)))
-        if (player.categories["generala"] is None):
-            posible_results.append(("generala", self.compute_five_equal(game)))
-        if (player.categories["double_generala"] != None and int(player.categories["generala"]) > 0):
-            posible_results.append(("double_generala", self.compute_five_equal(game)) + 500)
+        if player.categories["one"] is None:
+            possible_results.append(("one", self.number_count(game, 1)))
+        if player.categories["two"] is None:
+            possible_results.append(("two", self.number_count(game, 2)))
+        if player.categories["three"] is None:
+            possible_results.append(("three", self.number_count(game, 3)))
+        if player.categories["four"] is None:
+            possible_results.append(("four", self.number_count(game, 4)))
+        if player.categories["five"] is None:
+            possible_results.append(("five", self.number_count(game, 5)))
+        if player.categories["six"] is None:
+            possible_results.append(("six", self.number_count(game, 6)))
+        if player.categories["stairway"] is None:  # TODO: test!it doesnt work!!!
+            possible_results.append(("stairway", self.compute_stairway(game)))
+        if player.categories["fullhouse"] is None:
+            possible_results.append(("fullhouse", self.compute_fullhouse(game)))
+        if player.categories["poker"] is None:
+            possible_results.append(("poker", self.compute_poker(game)))
+        if player.categories["generala"] is None:
+            possible_results.append(("generala", self.compute_five_equal(game)))
+        if player.categories["double_generala"] != None and int(player.categories["generala"]) > 0:
+            possible_results.append(("double_generala", self.compute_five_equal(game)) + 500)
         elif (player.categories["double_generala"] == None):
-            posible_results.append(("double_generala", 0))
-        return posible_results
+            possible_results.append(("double_generala", 0))
+        return possible_results
 
     def print_posibilities(self, posible_results):
         for i in range(len(posible_results)):

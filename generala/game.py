@@ -37,7 +37,7 @@ class Game:
             self.add_player(new_player)
 
         while self.round != 11:
-            for player_index in range(self.players.__sizeof__()):
+            for player_index in range(self.players.__len__()):
                 self.players[player_index].print_points_table()
                 self.throw_number = 1
                 print("")
@@ -100,6 +100,11 @@ class Game:
                 posibilities = self.rules.compmute_posibilities(self, self.players[player_index])
                 print(self.prompts.dic["choose_points"] + "\n")
                 self.rules.print_posibilities(posibilities)
-                opcion2 = input("blablabla")
-                self.rules.round = self.rules.round + 1
-            self.round += 1
+
+                option2 = input()
+                while (not option2.isnumeric()) or int(option2) < 1 or int(option2) > posibilities.__len__() - 1:
+                    print(self.prompts.dic["error_choose_points"] + "\n")
+                    option2 = input()
+                self.players[player_index].write_result(posibilities[option2])
+
+                self.round += 1

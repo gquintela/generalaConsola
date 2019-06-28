@@ -20,6 +20,7 @@ class Prompts:
             "unlock_prompt": "Write the die\'s index to unlock: \n "
                              "(separate with \',\' if more than one die is selected.) ",
             "choose_points": "What do you want to do?",
+            "error_choose_points": "Please, choose a valid number!",
             "one": "One",
             "two": "Two",
             "three": "Three",

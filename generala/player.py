@@ -50,3 +50,5 @@ class Player():
         print(str("|").rjust(25, '-'))
         print(str("PUNTAJE: %s    |" % self.score).rjust(25, ' '))
         print(str("|").rjust(25, '-'))
+
+    def write_result(self, ):
