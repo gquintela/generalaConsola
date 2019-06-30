@@ -1,7 +1,3 @@
-from generala.prompts import Prompts
-from generala.judge import Judge
-
-
 class Player():
 
     def __init__(self):
