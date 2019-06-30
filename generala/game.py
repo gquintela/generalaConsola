@@ -1,5 +1,5 @@
 from generala.beaker import Beaker
-from generala.rules import Rules
+from generala.judge import Judge
 from generala.player import Player
 from generala.prompts import Prompts
 
@@ -7,7 +7,7 @@ from generala.prompts import Prompts
 class Game:
 
     def __init__(self):
-        self.rules = Rules()
+        self.judge = Judge()
         self.round = 1
         self.throw_number = 1
         self.players = []
@@ -36,9 +36,9 @@ class Game:
             new_player = input()
             self.add_player(new_player)
 
-        while self.round != 11:
-            for player_index in range(self.players.__len__()):
-                self.players[player_index].print_points_table()
+        while self.round != 12:
+            for player in self.players:
+                player.print_points_table()
                 self.throw_number = 1
                 print("")
                 fold = 0
@@ -50,7 +50,8 @@ class Game:
                 while self.throw_number < 3 and fold == 0:
 
                     option = 0
-                    print("round: %d" % self.throw_number)
+                    print(player.name + self.prompts.dic["has_to_play"])
+                    print("throw number %d" % self.throw_number)
 
                     print(self.prompts.dic["choose_option"] + "\n")
                     print("1) " + self.prompts.dic["lock_dice"])
@@ -84,7 +85,7 @@ class Game:
                     elif option == 5:
                         self.beaker.print_Beaker()
                     elif option == 6:  # imprimir tabla de puntos
-                        self.players[player_index].print_points_table()
+                        player.print_points_table()
                     elif option == 7:
                         self.beaker.sort()
                         self.beaker.print_Beaker()
@@ -95,16 +96,21 @@ class Game:
                 print("\n")
 
                 self.beaker.unlock_dice([1, 2, 3, 4, 5])
-                self.players[player_index].print_points_table()
+                player.print_points_table()
                 self.beaker.print_Beaker()
-                posibilities = self.rules.compmute_posibilities(self, self.players[player_index])
+                posibilities = self.judge.compmute_posibilities(self, player)
                 print(self.prompts.dic["choose_points"] + "\n")
-                self.rules.print_posibilities(posibilities)
+                self.judge.print_posibilities(posibilities)
 
                 option2 = input()
-                while (not option2.isnumeric()) or int(option2) < 1 or int(option2) > posibilities.__len__() - 1:
+                while (not option2.isnumeric()) or int(option2) < 1 or int(option2) > posibilities.__len__() :
                     print(self.prompts.dic["error_choose_points"] + "\n")
                     option2 = input()
-                self.players[player_index].write_result(posibilities[option2])
 
-                self.round += 1
+                category_to_write = posibilities[int(option2)-1][0]
+                amount = posibilities[int(option2)-1][1]
+
+                self.judge.write_score(player, category_to_write, amount)
+            self.round += 1
+
+        self.judge.print_final_results(self)

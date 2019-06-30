@@ -1,5 +1,6 @@
 from generala.prompts import Prompts
-from generala.rules import Rules
+from generala.judge import Judge
+
 
 class Player():
 
@@ -18,11 +19,7 @@ class Player():
             "generala": (None),
             "double_generala": (None)
         }
-
-    @property
-    def score(self):
-        return sum(points for points in self.categories.values()
-                   if points is not None)
+        self.score = 0
 
     def print_points(self, cat):
         if (self.categories[cat] is None):
@@ -34,7 +31,7 @@ class Player():
 
     def print_points_table(self):
         print(str("%s" % (self.name)).center(25, '-'))
-       #print(str(game.prompts.dic["one"] + ": %s    |" % self.print_points(game.prompts.dic["one"])).rjust(25, ' ')) # TODO: How can i call the dictionary from prompts.dic from here?
+        # print(str(game.prompts.dic["one"] + ": %s    |" % self.print_points(game.prompts.dic["one"])).rjust(25, ' ')) #
 
         print(str("one: %s    |" % self.print_points("one")).rjust(25, ' '))
         print(str("two: %s    |" % self.print_points("two")).rjust(25, ' '))
@@ -50,5 +47,3 @@ class Player():
         print(str("|").rjust(25, '-'))
         print(str("PUNTAJE: %s    |" % self.score).rjust(25, ' '))
         print(str("|").rjust(25, '-'))
-
-    def write_result(self, ):

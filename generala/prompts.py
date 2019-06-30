@@ -19,6 +19,7 @@ class Prompts:
                            "(separate with \',\' if more than one die is selected.) ",
             "unlock_prompt": "Write the die\'s index to unlock: \n "
                              "(separate with \',\' if more than one die is selected.) ",
+            "has_to_play": " has to play.\n",
             "choose_points": "What do you want to do?",
             "error_choose_points": "Please, choose a valid number!",
             "one": "One",
@@ -32,5 +33,11 @@ class Prompts:
             "poker": "Poker",
             "generala": "Generala",
             "double_generala": "Double generala",
+            "final_results": "The game has finished! these are the final results:",
+            "one_winner": "The winner is: ",
+            "one_player_game": "Your score is: ",
+            "tie": "There is a tie beetween: ",
+            "winner_points": "with the score of ",
+
 
         }
