@@ -4,6 +4,11 @@ from generala.player import Player
 from generala.prompts import Prompts
 
 
+def clear_screen():
+    for i in range(50):
+        print("\n")
+
+
 class Game:
 
     def __init__(self):
@@ -32,9 +37,11 @@ class Game:
             player_number = input()
 
         for i in range(int(player_number)):
-            print("%s%d name: " % (self.prompts.dic["new_name"], i + 1))
+            print("%s %d: " % (self.prompts.dic["new_name"], i + 1))
             new_player = input()
             self.add_player(new_player)
+
+        clear_screen()
 
         while self.round != 12:
             for player in self.players:
@@ -45,13 +52,16 @@ class Game:
                 locked_dice = set()
 
                 self.beaker.throw_beaker()
-                self.beaker.print_Beaker()
+
 
                 while self.throw_number < 3 and fold == 0:
+                    clear_screen()
+                    player.print_points_table()
+                    self.beaker.print_Beaker()
 
                     option = 0
                     print(player.name + self.prompts.dic["has_to_play"])
-                    print("throw number %d" % self.throw_number)
+                    print(self.prompts.dic["throw_number"] + str(self.throw_number))
 
                     print(self.prompts.dic["choose_option"] + "\n")
                     print("1) " + self.prompts.dic["lock_dice"])
@@ -61,6 +71,8 @@ class Game:
                     print("5) " + self.prompts.dic["show_dice"])
                     print("6) " + self.prompts.dic["show_score"])
                     print("7) " + self.prompts.dic["sort_dice"])
+                    print ("")
+                    print(self.prompts.dic["choose"])
 
                     option = input()
                     while (not option.isnumeric()) or int(option) < 1 or int(option) > 7:
@@ -89,6 +101,8 @@ class Game:
                     elif option == 7:
                         self.beaker.sort()
                         self.beaker.print_Beaker()
+
+
 
                 print("\n\n\n")
                 print("-------------------------------------------------------")

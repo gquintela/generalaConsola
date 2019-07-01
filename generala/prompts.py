@@ -5,7 +5,7 @@ class Prompts:
             "welcome": "Welcome to the Generala Game!",
             "players_number": "how many players will play? (1-4)",
             "error_player_number": "Please choose a number beetween 1 and 4",
-            "new_name": "Player ",
+            "new_name": "Name of player",
             "choose_option": "Choose an option: ",
             "lock_dice": "Lock dice.",
             "unlock_dice": "Unlock dice.",
@@ -20,6 +20,8 @@ class Prompts:
             "unlock_prompt": "Write the die\'s index to unlock: \n "
                              "(separate with \',\' if more than one die is selected.) ",
             "has_to_play": " has to play.\n",
+            "choose": "please choose: ",
+            "throw_number": " Throw number ",
             "choose_points": "What do you want to do?",
             "error_choose_points": "Please, choose a valid number!",
             "one": "One",
